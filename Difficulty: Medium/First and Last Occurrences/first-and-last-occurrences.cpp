@@ -10,35 +10,49 @@ class Solution {
   public:
     vector<int> find(vector<int>& arr, int x) {
         // code here
-        int st = 0,end = arr.size()-1;
+        int st = 0, end = arr.size()-1;
         int mid;
-        int startindex =-1,endindex = -1;
+        int startindex = -1,endindex = -1;
+        
         while(st<=end){
-            mid = end + ((st-end)/2);
-            if(arr[mid]>x)
-            end = mid-1;
-            else if(arr[mid]<x)
-            st = mid+1;
+            
+            mid = st + ((end - st)/2);
+            
+            if(arr[mid]<x){
+                st = mid+1;
+            }
+            else if(arr[mid]>x){
+                end = mid-1;
+            }
             else if(arr[mid]==x){
                 startindex = mid;
                 end = mid-1;
             }
         }
-        st=0;
+        
+        st = 0;
         end = arr.size()-1;
-        while(st<= end){
-            mid = end + ((st-end)/2);
-            if(arr[mid]>x)
-            end = mid-1;
-            else if(arr[mid]<x)
-            st = mid+1;
+        
+        while(st<=end){
+            
+            mid = st + ((end - st)/2);
+            
+            if(arr[mid]<x){
+                st = mid+1;
+            }
+            else if(arr[mid]>x){
+                end = mid-1;
+            }
             else if(arr[mid]==x){
                 endindex = mid;
                 st = mid+1;
             }
-            
         }
+        
         return {startindex, endindex};
+        
+        
+        
     }
 };
 
