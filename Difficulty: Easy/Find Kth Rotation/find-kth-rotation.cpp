@@ -15,27 +15,23 @@ class Solution {
         if(arr[0]<arr[N-1])
         return 0;
         else{
-            
-            int st=0,end = arr.size()-1;
-            
+            int st=0,end =N-1;
             while(st<=end){
+                int mid = (st+end)/2;
                 
-                int mid = st + (end - st);
-                
-                int next = (mid+1)%N;
-                int prev = (mid+N-1)%N;
-                if(arr[mid]<=arr[prev] && arr[mid]<=arr[next])
+                if(arr[mid]<=arr[(mid-1+N)%N] && arr[mid]<=arr[(mid+1)%N])
                 return mid;
                 
-                else if(arr[mid]>=arr[st]){
-                    st = mid+1;
-                }
-                else if(arr[mid]<=arr[end]){
-                    end = mid-1;
-                }
+                else if(arr[mid]<=arr[end])
+                end = mid-1;
+                
+                else if(arr[mid]>=arr[st])
+                st = mid+1;
             }
-            return 0;
+            
+            
         }
+        
     }
 };
 
