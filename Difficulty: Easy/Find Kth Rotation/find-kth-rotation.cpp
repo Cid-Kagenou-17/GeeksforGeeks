@@ -12,26 +12,21 @@ class Solution {
     int findKRotation(vector<int> &arr) {
         // Code Here
         int N = arr.size();
-        if(arr[0]<arr[N-1])
-        return 0;
-        else{
-            int st=0,end =N-1;
-            while(st<=end){
-                int mid = (st+end)/2;
-                
-                if(arr[mid]<=arr[(mid-1+N)%N] && arr[mid]<=arr[(mid+1)%N])
-                return mid;
-                
-                else if(arr[mid]<=arr[end])
-                end = mid-1;
-                
-                else if(arr[mid]>=arr[st])
-                st = mid+1;
-            }
-            
-            
-        }
+        int st=0,end = N-1;
         
+        while(st<=end){
+            
+            int mid = (st+end)/2;
+            
+            if(arr[mid]<=arr[(mid-1+N)%N] && arr[mid]<=arr[(mid+1)%N])
+            return mid;
+            
+            else if(arr[mid]<=arr[end])
+            end = mid-1;
+            
+            else if(arr[mid]>=arr[st])
+            st = mid+1;
+        }
     }
 };
 
