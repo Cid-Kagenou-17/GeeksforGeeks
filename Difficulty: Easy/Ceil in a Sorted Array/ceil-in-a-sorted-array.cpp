@@ -10,32 +10,33 @@ class Solution {
   public:
     int findCeil(vector<int>& arr, int x) {
         // code here
-        int index = -1;
-        int mid;
-        int st = 0,end = arr.size()-1;
+        int st =0;
+        int end = arr.size()-1;
+        int i=-1,index = -1;
         
         while(st<=end){
             
-            mid = (end + (st-end)/2);
-            if(arr[mid]<x){
-                st = mid+1;
-            }
-            else if(arr[mid]>x){
-                end = mid-1;
-            }
-            else if(arr[mid]==x){
+            int mid = (st+end)/2;
+            
+            if(arr[mid]==x){
                 index = mid;
                 end = mid-1;
             }
+            else if(arr[mid]>x){
+                i=mid;
+                end = mid-1;
+            }
+            else if(arr[mid]<x)
+            st = mid+1;
+            
         }
-        if(index == -1 && st <arr.size()){
-            return st;
-        }
-        else if(index == -1 && st>arr.size()-1)
+        
+        if(i==-1 && index == -1)
         return -1;
-        else{
-            return index;
-        }
+        else if(index!=-1)
+        return index;
+        else
+        return i;
     }
 };
 
