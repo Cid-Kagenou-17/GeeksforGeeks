@@ -1,68 +1,35 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
-
 // User function Template for C++
 class Solution {
   public:
     int findCeil(vector<int>& arr, int x) {
         // code here
-        int st =0;
+        int st = 0;
         int end = arr.size()-1;
-        int i=-1,index = -1;
+        int p1=-1;
+        int p2=-1;
         
         while(st<=end){
             
-            int mid = (st+end)/2;
+            int mid = (st + (end - st)/2);
             
             if(arr[mid]==x){
-                index = mid;
+                p1 = mid;
                 end = mid-1;
             }
             else if(arr[mid]>x){
-                i=mid;
+                p2 = mid;
                 end = mid-1;
             }
-            else if(arr[mid]<x)
-            st = mid+1;
-            
+            else if(arr[mid]<x){
+                st = mid+1;
+            }
         }
         
-        if(i==-1 && index == -1)
+        if(p1 == -1 && p2 == -1)
         return -1;
-        else if(index!=-1)
-        return index;
+        else if(p1!=-1)
+        return p1;
         else
-        return i;
+        return p2;
     }
 };
-
-
-//{ Driver Code Starts.
-int main() {
-    string ts;
-    getline(cin, ts);
-    int t = stoi(ts);
-    while (t--) {
-        vector<int> arr;
-        string input;
-        getline(cin, input);
-        stringstream ss(input);
-        int number;
-        while (ss >> number) {
-            arr.push_back(number);
-        }
-        string xs;
-        getline(cin, xs);
-        int x = stoi(xs);
-        Solution ob;
-        int ans = ob.findCeil(arr, x);
-        cout << ans << endl;
-        cout << "~" << endl;
-    }
-    return 0;
-}
-// } Driver Code Ends
